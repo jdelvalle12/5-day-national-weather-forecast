@@ -1,0 +1,76 @@
+html {
+    position: relative;
+    font-family: "Oxygen","Merriweather", sans-serif;
+    font-size: 30px;
+    background-color: rgb(248, 244, 244);
+    color:rgb(109, 108, 108);
+    margin:0;
+    padding:0;  
+    width: auto;
+    height: auto;
+    text-decoration: none;
+  }
+
+#header {
+    position: relative;
+    border-bottom: 2px solid gray;
+    z-index: 100;
+    width: 100.4%;
+    height: auto;
+    line-height: 80px;
+    background-color: rgb(7, 7, 233);
+    text-align: center;
+    }
+    
+#header .logo {
+    padding-top: 1rem; 
+    font-size: 35px;
+    text-decoration: none;
+    color: white;
+    left: 5rem;
+}
+
+#header p {
+    font-size: 20px;
+    color: white;
+
+}
+
+/* CARDS */
+.card {
+	margin: 0 0 20px 0;
+	border: 3px solid ;
+	border-radius: ;
+}
+
+.card-header {
+	color: ;
+	background-color: ;
+	padding: 2.5%;
+	border-radius: ;
+}
+
+.card-body {
+	padding: 2.5%;
+}
+
+/* FORM */
+.form-label,
+.form-input,
+.form-textarea {
+	display: block;
+}
+
+.form-label {
+	font-size: 1.1rem;
+	margin: 0 0 0 5px;
+}
+
+.form-input {
+	width: 100%;
+	padding: 3%;
+	margin: 5px 0;
+	font-size: 1.2rem;
+	border: 2px solid ;
+	border-radius: ;
+}

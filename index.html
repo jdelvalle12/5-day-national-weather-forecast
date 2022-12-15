@@ -4,11 +4,59 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://api.openweathermap.org/data/2.5/weather?q={city name}&appid={API key}" rel="stylesheet"/>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Merriweather&family=Oxygen&display=swap" rel="stylesheet">
     <title>5 Day National Weather Forecast</title>
-
+    
     <link rel="stylesheet" href="./assets/css/style.css" />
 </head>
-<body>
+
+<body class="flex-column min-100-vh">
+    <header>
+        <div id="header">  
+            <a href="index.html" class="logo">Weather Dashboard</a>
+        <p>
+            Select the city you want to view the 5-day forecast.
+        </p>
+        </div>
+    </header>
+
+    <main class="flex-row justify-space-between">
+        <div class="col-12 col-md-4">
+            <div class="card">
+                <h3 class="card-header text-uppercase">Search For A City</h3>
+                <form id="user-form" class="card-body">
+                    <label class="form-label" for="username">City</label>
+                    <input
+                        name="City"
+                        id="city"
+                        type="text"
+                        autofocus="true"
+                        class="form-input"
+                    />
+                    <button type="submit" class="btn">Search</button>
+                </form>
+            </div>
+
+            <div class="card">
+                <h3 class="card-header text-uppercase">Search By City</h3>
+                <div id="language-buttons" class="card-body">
+                    <button city-name="orlando" class="btn">Orlando</button>
+                    <button city-name="new york" class="btn">New York</button>
+                    <button city-name="hawaii" class="btn">Hawaii</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-12 col-md-8">
+            <h2 class="subtitle">
+                Showing Repositories for: <span id="repo-search-term"></span>
+            </h2>
+            <div id="repos-container" class="list-group"></div>
+        </div>
+    </main>
     <script src="./assets/js/script.js"></script>
 </body>
 </html>
