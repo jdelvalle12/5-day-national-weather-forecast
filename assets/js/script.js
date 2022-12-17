@@ -1,15 +1,14 @@
 var userFormEl = document.querySelector("#user-form");
 var cityInputEl = document.querySelector("#city");
 var forecastContainerEl = document.querySelector("#forecast-container");
-var forecast = document.querySelector("#forecast");
-var timeDisplayEl = document.querySelector('#time-display');
+var forecastDisplayEl = document.querySelector("#forecast");
+var timeDisplayEl = document.querySelector('.time-display');
+var searchButtonEl = document.querySelector('.btn');
 
-var locations = [];
+var city = [];
 
 var apiKey = "0a3422ed44f463b4f5d64da245e2cb6f";
 var apiUrl = "http://api.openweathermap.org/data/2.5/forecast?q=" + city + "&appid=" + apiKey;
-
-
 
 var formSubmitHandler = function (event) {
 	event.preventDefault();
@@ -43,12 +42,38 @@ var getCity = function (city) {
 		})
 };
 
+function readCityFromStorage() {
+	var cities = localStorage.getItem('cities');
+	if (cities) {
+	  cities = JSON.parse(cities);
+	} else {
+	  cities = [];
+	}
+	return cities;
+  }
+  
+  // Takes an array of projects and saves them in localStorage.
+  function saveCityToStorage(cities) {
+	localStorage.setItem('cities', JSON.stringify(cities));
+  }
+  
+  // Gets city data from local storage and displays it
+  function printCityData() {
+	  
+	// get cities from localStorage
+	var cities = readCityFromStorage();
+  
+	// loop through each city 
+	for (var i = 0; i < cities.length; i += 1) {
+	  var city = cities[i];
+	  
+	}
 var displayForecast = function (city, forecast) {
-	if (city.length === 0) {
+	if (forecast.length === 0) {
 		forecastContainerEl.textContent = "No forecast found.";
 		return;
 	}
-
+}
 	forecastContainerEl.textContent = forecast;
 
 	for (var i = 0; i < city.length; i++) {
@@ -70,8 +95,8 @@ var displayForecast = function (city, forecast) {
 		forecastContainerEl.appendChild(cityEl);
 	}
 
-}
+};
 
 	getCity();
-	//displayTime();
-	//setInterval(displayTime, 1000);
+	searchButtonEl.addEventListener("submit", getCity);
+	
