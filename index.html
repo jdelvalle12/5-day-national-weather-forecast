@@ -20,7 +20,7 @@
 </head>
 
 <body class="flex-column min-100-vh">
-    <header class="background-color-blue text-align center text-white">
+    <header class="background-color-blue text-align-center text-white">
         <div id="header">  
             <a href="index.html" class="logo">Weather Dashboard</a>
         <p>
@@ -34,8 +34,8 @@
         <div class="col-12 col-md-4">
             <div class="card">
                 <h3 class="card-header">Search For A City</h3>
-                <form id="user-form" class="card-body">
-                    <label class="form-label" for="city">City</label>
+                <form id="city-form" class="card-body" method="POST">
+                    <label class="form-label" for="city"></label>
                     <input
                         name="City"
                         id="city"
@@ -45,6 +45,8 @@
                     />
                     <button type="submit" class="btn">Search</button>
                 </form>
+                <span id="city-names"></span>
+                <ul id="city-list"></ul>
             </div>
         </div>
       </aside>

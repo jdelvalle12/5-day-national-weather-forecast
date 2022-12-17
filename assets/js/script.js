@@ -1,30 +1,33 @@
-var userFormEl = document.querySelector("#user-form");
+var cityFormEl = document.querySelector("#city-form");
 var cityInputEl = document.querySelector("#city");
 var forecastContainerEl = document.querySelector("#forecast-container");
 var forecastDisplayEl = document.querySelector("#forecast");
 var searchButtonEl = document.querySelector('.btn');
+var cityNameSpan = document.querySelector('#city-name');
 
 var city = [];
-//var randomCity = city(Math.floor(Math.random() * city.length));
+
 
 var apiKey = "0a3422ed44f463b4f5d64da245e2cb6f";
 var apiUrl = "http://api.openweathermap.org/data/2.5/forecast?q=" + city + "&appid=" + apiKey;
 
-var formSubmitHandler = function (event) {
+cityFormEl.addEventListener("submit", function (event) {
 	event.preventDefault();
 
-	var city = cityInputEl.value.trim();
+	var cityText = cityInputEl.value.trim();
 
-	if (city) {
-		getCity(city);
+	if (cityText === "") {
+		return;
 
-		forecastContainerEl.textContent = "";
-		cityInputEl.value = "";
-	} else {
-		alert("Please enter a city");
-	}
-};
-//console.log(formSubmitHandler);
+        cities.push(cityText);
+        cityInputEl.value = "";
+
+     storeCity();
+     renderCity();   
+		
+    }
+});
+
 
 var buttonClickHandler = function (event) {
 	var forecast = event.target.getAttribute("data-forecast");
@@ -35,7 +38,7 @@ var buttonClickHandler = function (event) {
 		forecastContainerEl.textContent = "";
 	}
 };
-//console.log(buttonClickHandler);
+
 
 fetch("http://api.openweathermap.org/data/2.5/forecast?q=city&appid=0a3422ed44f463b4f5d64da245e2cb6f", {
 	method: "GET",
@@ -49,8 +52,43 @@ fetch("http://api.openweathermap.org/data/2.5/forecast?q=city&appid=0a3422ed44f4
 	});
 	
 
-function renderCityFromStorage() {
-	var cities = localStorage.getItem('cities');
+function renderCity() {
+    cityList.innerHTML = "";
+    cityNameSpan.textContent = cities.length;
+
+    for (var i = 0; i < cities.length; i++) {
+		var city = cities[i];
+
+        var li = document.createElement("li");
+        li.textContent = todo;
+        li.setAttribute("data-index", i);
+
+        var button = document.createElement("button");
+        button.textContent = "";
+
+        li.appendChild(button);
+        todoList.appendChild(li);
+    }
+}
+
+function init() {
+    // Get stored todos from localStorage
+    var storedCities = JSON.parse(localStorage.getItem("cities"));
+  
+    // If todos were retrieved from localStorage, update the todos array to it
+    if (storedCities !== null) {
+      cities = storedCities;
+    }
+  
+    // This is a helper function that will render todos to the DOM
+    renderCity();
+  }
+
+  function storeCity() {
+    // Stringify and set key in localStorage to todos array
+    localStorage.setItem("cities", JSON.stringify(cities));
+}  
+    var cities = localStorage.getItem('cities');
 	if (cities) {
 	  cities = JSON.parse(cities);
 	} else {
@@ -58,7 +96,7 @@ function renderCityFromStorage() {
 	}
 	return cities;
   }
-  console.log(renderCityFromStorage);
+  
   
   function saveCityToStorage(cities) {
 	localStorage.setItem('cities', JSON.stringify(cities));
@@ -105,7 +143,7 @@ var displayForecast = function (city, forecast) {
 
 };
 
-	renderCityFromStorage();
+	//renderCityFromStorage();
 	//displayForecast();
 	//getCity();
 	//searchButtonEl.addEventListener("submit", getCity);
