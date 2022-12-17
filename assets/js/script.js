@@ -2,10 +2,10 @@ var userFormEl = document.querySelector("#user-form");
 var cityInputEl = document.querySelector("#city");
 var forecastContainerEl = document.querySelector("#forecast-container");
 var forecastDisplayEl = document.querySelector("#forecast");
-var timeDisplayEl = document.querySelector('.time-display');
 var searchButtonEl = document.querySelector('.btn');
 
 var city = [];
+//var randomCity = city(Math.floor(Math.random() * city.length));
 
 var apiKey = "0a3422ed44f463b4f5d64da245e2cb6f";
 var apiUrl = "http://api.openweathermap.org/data/2.5/forecast?q=" + city + "&appid=" + apiKey;
@@ -24,25 +24,32 @@ var formSubmitHandler = function (event) {
 		alert("Please enter a city");
 	}
 };
+//console.log(formSubmitHandler);
 
-var getCity = function (city) {
-	var apiUrl = "http://api.openweathermap.org/data/2.5/forecast?q=city&appid=0a3422ed44f463b4f5d64da245e2cb6f";
+var buttonClickHandler = function (event) {
+	var forecast = event.target.getAttribute("data-forecast");
 
-	fetch(apiUrl)
-		.then(function (response) {
-			if (response.ok) {
-				console.log(response);
-				response.json().then(function (data) {
-					console.log(data);
-					displayForecast(data, city);
-				});
-			} else {
-				alert("Error: " + response.statusText);
-			}
-		})
+	if (forecast) {
+		getFeaturedCity(forecast);
+
+		forecastContainerEl.textContent = "";
+	}
 };
+//console.log(buttonClickHandler);
 
-function readCityFromStorage() {
+fetch("http://api.openweathermap.org/data/2.5/forecast?q=city&appid=0a3422ed44f463b4f5d64da245e2cb6f", {
+	method: "GET",
+	cache: "reload",
+})
+	.then(function (response) {
+		return response.json();
+	})
+	.then(function (data) {
+		console.log(data);
+	});
+	
+
+function renderCityFromStorage() {
 	var cities = localStorage.getItem('cities');
 	if (cities) {
 	  cities = JSON.parse(cities);
@@ -51,23 +58,24 @@ function readCityFromStorage() {
 	}
 	return cities;
   }
+  console.log(renderCityFromStorage);
   
-  // Takes an array of projects and saves them in localStorage.
   function saveCityToStorage(cities) {
 	localStorage.setItem('cities', JSON.stringify(cities));
   }
   
-  // Gets city data from local storage and displays it
+  
   function printCityData() {
 	  
-	// get cities from localStorage
-	var cities = readCityFromStorage();
+	
+	var cities = renderCityFromStorage();
   
-	// loop through each city 
+	 
 	for (var i = 0; i < cities.length; i += 1) {
 	  var city = cities[i];
 	  
 	}
+
 var displayForecast = function (city, forecast) {
 	if (forecast.length === 0) {
 		forecastContainerEl.textContent = "No forecast found.";
@@ -97,6 +105,8 @@ var displayForecast = function (city, forecast) {
 
 };
 
-	getCity();
-	searchButtonEl.addEventListener("submit", getCity);
+	renderCityFromStorage();
+	//displayForecast();
+	//getCity();
+	//searchButtonEl.addEventListener("submit", getCity);
 	
