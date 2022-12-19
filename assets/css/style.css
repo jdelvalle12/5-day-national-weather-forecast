@@ -160,6 +160,12 @@ main {
 	padding: 2.5%;
 }
 
+.forecast {
+	height: 20rem;
+}
+.card stack {
+	height: 20rem;
+}
 /* FORM */
 .form-label,
 .form-input,

@@ -45,15 +45,16 @@
                         type="text"
                         autofocus="true"
                         class="form-input"
+                        placeholder="city"
                     />
                     <button type="submit" class="btn">Search</button>
                 </form>
-                <div id="city-buttons">
-                    
+                
+                <div id="city-buttons" class="card-body">   
                 <span id="city-name"></span>
-                <ul id="city-list">
-                    <li type="btn" data-city="" class="btn"></li>
-                </ul>
+                <ul id="city-list"></ul>
+				</div>
+			</div>
             </div>
         </div>
       </aside>
@@ -62,18 +63,18 @@
         <div class="col-12 col-md-8">
             <h1 class="location"></h1>
             <span id="date-display"></span>
-            <ul> 
-                <li class="temperature"></li>
-                <li class="humidity"></li>
-                <li class="wind speed"></li>
-            </ul>
+            <span class="temperature"></span>
+            <span class="humidity"></span>
+            <span class="wind speed"></span>
         </div>
       </section>
 
-      <section class="5-day forecast">
+      <section class="forecast">
         <div class="col-12 col-md-8">
+        <div class="card ">
             <span id="forecast"></span>
         <div id="forecast-container" class="list-group"></div>
+            </div>
         </div>
     </section> 
     </main>

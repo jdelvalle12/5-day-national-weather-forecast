@@ -3,14 +3,13 @@ var cityInputEl = document.querySelector("#city");
 var cityNameSpan = document.querySelector('#city-name');
 var cityListEl = document.querySelector('#city-list');
 var cityButtonsEl = document.querySelector("#city-buttons");
-var dateDisplayEl = document.querySelector('#date-display');
 var forecastContainerEl = document.querySelector("#forecast-container");
 var forecastDisplayEl = document.querySelector("#forecast");
 var searchButtonEl = document.querySelector('.btn');
 
 
 var cities = [];
-
+var forecast = [];
 
 var apiKey = "0a3422ed44f463b4f5d64da245e2cb6f";
 var apiUrl = "http://api.openweathermap.org/data/2.5/forecast?q=" + city + "&appid=" + apiKey;
@@ -84,6 +83,7 @@ cityListEl.addEventListener("click", function(event) {
 fetch("http://api.openweathermap.org/data/2.5/forecast?q=city&appid=0a3422ed44f463b4f5d64da245e2cb6f", {
 	method: "GET",
 	cache: "reload",
+	header: " ",
 })
 	.then(function (response) {
 		return response.json();
@@ -91,7 +91,7 @@ fetch("http://api.openweathermap.org/data/2.5/forecast?q=city&appid=0a3422ed44f4
 	.then(function (data) {
 		console.log(data);
 	});   
-
+	
 
 var buttonClickHandler = function (event) {
 	var forecast = event.target.getAttribute("data-forecast");
@@ -102,18 +102,7 @@ var buttonClickHandler = function (event) {
 		forecastContainerEl.textContent = "";
 	}
 };
-var getFeaturedForecast = function (forecast) {
-	var apiUrl =
-	"http://api.openweathermap.org/data/2.5/forecast?q=" + city + "&appid=" + "0a3422ed44f463b4f5d64da245e2cb6f";
 
-	fetch(apiUrl).then(function (response) {
-		if (response.ok) {
-			response.json().then(function (data) {
-				displayForecast(data.items, forecast);
-			});
-		} 
-	});
-};
 
 function printForecastData() {
 	
@@ -122,35 +111,35 @@ function printForecastData() {
 	var cities = renderCity();
   
 	 
-	for (var i = 0; i < cities.length; i += 1) {
+	for (var i = 0; i < cities.length; i ++) {
 	  var city = cities[i];
 	  
 	}
 
 
-	var displayForecast = function (cities, forecast) {
+	function displayForecast(cities, forecast) {
 		if (cities.length === 0) {
 			forecastContainerEl.textContent = "";
 			return;
 		}
-	
+
 		forecast.textContent = forecast;
-	
+
 		for (var i = 0; i < forecast.length; i++) {
 			var cityName = forecast[i] + "/" + city[i].name;
-	
+
 			var forecastDisplayEl = document.createElement("a");
 			forecastDisplayEl.classList = "list-item flex-row justify-space-between align-center";
 			forecastDisplayEl.setAttribute(cityName);
-	
+
 			var titleEl = document.createElement("span");
 			titleEl.textContent = cityName;
-	
+
 			forecastDisplayEl.appendChild(titleEl);
-	
+
 			var statusEl = document.createElement("span");
 			statusEl.classList = "flex-row align-center";
-	
+
 			if (repos[i].open_issues_count > 0) {
 				statusEl.innerHTML =
 					"<i class='fas fa-times status-icon icon-danger'></i>" +
@@ -160,15 +149,15 @@ function printForecastData() {
 				statusEl.innerHTML =
 					"<i class='fas fa-check-square status-icon icon-success'></i>";
 			}
-	
+
 			forecastDisplayEl.appendChild(statusEl);
-	
+
 			forecastContainerEl.appendChild(forecastDisplayEl);
 		}
 
-	};
+	}
 }
 	init();
-	
+	cityButtonsEl.addEventListener("click", buttonClickHandler);
 	//displayForecast();
 	
