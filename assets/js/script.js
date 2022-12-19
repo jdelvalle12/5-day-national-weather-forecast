@@ -115,9 +115,9 @@ function printForecastData() {
 	  var city = cities[i];
 	  
 	}
+}
 
-
-	function displayForecast(cities, forecast) {
+function displayForecast(cities, forecast) {
 		if (cities.length === 0) {
 			forecastContainerEl.textContent = "";
 			return;
@@ -126,37 +126,13 @@ function printForecastData() {
 		forecast.textContent = forecast;
 
 		for (var i = 0; i < forecast.length; i++) {
-			var cityName = forecast[i] + "/" + city[i].name;
+			var cityName = forecast[i];
 
 			var forecastDisplayEl = document.createElement("a");
 			forecastDisplayEl.classList = "list-item flex-row justify-space-between align-center";
 			forecastDisplayEl.setAttribute(cityName);
-
-			var titleEl = document.createElement("span");
-			titleEl.textContent = cityName;
-
-			forecastDisplayEl.appendChild(titleEl);
-
-			var statusEl = document.createElement("span");
-			statusEl.classList = "flex-row align-center";
-
-			if (repos[i].open_issues_count > 0) {
-				statusEl.innerHTML =
-					"<i class='fas fa-times status-icon icon-danger'></i>" +
-					repos[i].open_issues_count +
-					" issue(s)";
-			} else {
-				statusEl.innerHTML =
-					"<i class='fas fa-check-square status-icon icon-success'></i>";
-			}
-
-			forecastDisplayEl.appendChild(statusEl);
-
-			forecastContainerEl.appendChild(forecastDisplayEl);
-		}
-
 	}
-}
+};
 	init();
 	cityButtonsEl.addEventListener("click", buttonClickHandler);
 	//displayForecast();
