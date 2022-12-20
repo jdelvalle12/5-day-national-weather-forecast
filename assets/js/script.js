@@ -12,7 +12,7 @@ var cities = [];
 var forecast = [];
 
 var apiKey = "0a3422ed44f463b4f5d64da245e2cb6f";
-var apiUrl = "http://api.openweathermap.org/data/2.5/forecast?q=" + city + "&appid=" + apiKey;
+var apiUrl = "http://api.openweathermap.org/data/2.5/forecast?q=" + "lat&lon" + "lon&appid=" + apiKey;
 
 
 
@@ -80,7 +80,7 @@ cityListEl.addEventListener("click", function(event) {
 	}
 });
 
-fetch("http://api.openweathermap.org/data/2.5/forecast?q=city&appid=0a3422ed44f463b4f5d64da245e2cb6f", {
+fetch("http://api.openweathermap.org/data/2.5/forecast?q=lat&lon=lon&appid=0a3422ed44f463b4f5d64da245e2cb6f", {
 	method: "GET",
 	cache: "reload",
 	header: " ",
@@ -103,8 +103,17 @@ var buttonClickHandler = function (event) {
 	}
 };
 
+function getWeather() {
+	var searchWeatherArr = document.location.search.split('&');
 
-function printForecastData() {
+	var query = searchWeatherArr[0].split('=').pop();
+	var format = searchWeatherArr[1].split('=').pop();
+
+	searchApi(query, format);
+}
+
+function printForecastData(forecast) {
+	console.log(forecast);
 	
 	forecastDisplayEl.empty();
 	
@@ -118,12 +127,12 @@ function printForecastData() {
 }
 
 function displayForecast(cities, forecast) {
-		if (cities.length === 0) {
+		if (cities === " ") {
 			forecastContainerEl.textContent = "";
 			return;
 		}
 
-		forecast.textContent = forecast;
+		forecastDisplayEl.textContent = forecast;
 
 		for (var i = 0; i < forecast.length; i++) {
 			var cityName = forecast[i];
