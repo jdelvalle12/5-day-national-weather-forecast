@@ -14,7 +14,62 @@ var forecast = [];
 var apiKey = "0a3422ed44f463b4f5d64da245e2cb6f";
 var apiUrl = "http://api.openweathermap.org/data/2.5/forecast?q=" + city + "&appid=" + apiKey;
 
+async function getWeather () {
+	var apiUrl = "http://api.openweathermap.org/data/2.5/forecast?q=" + city + "&appid=" + apiKey;
 
+	var data = await fetch(apiUrl)
+		.then(function (response) {
+			if (response.ok) {
+				console.log(response);
+				response.json().then(function (data) {
+					console.log(data);
+					displayRepos(data, user);
+				});
+			} else {
+				alert("Error: " + response.statusText);
+			}
+		})
+		.catch(function (error) {
+			alert("Unable to connect to GitHub");
+		});
+};
+
+async function getWeather() {
+    // variable for url for CURRENT weather
+    var city = document.querySelector('input').value; // changes default value to user entered text
+
+    var apiUrl = "http://api.openweathermap.org/data/2.5/current?q=" + city + "&appid=" + apiKey;
+
+    var data = fetch(apiUrl)
+        .then(function (response) {
+            console.log("Fetch Status: " + response.status);
+            if (response.status !== 200) { 
+                alert("Error reaching Server" + "\n Status Code: " + response.status);
+            }
+            return response.json(); 
+        })
+}
+
+//fetch("http://api.openweathermap.org/data/2.5/current?q=city&appid=0a3422ed44f463b4f5d64da245e2cb6f", {
+	//method: "GET",
+	//header: "",
+//})
+	//.then(function (response) {
+		//return response.json();
+	//})
+	//.then(function (data) {
+	//	console.log(data);
+	//});   
+
+var temp = data.current.temp + "F"; 
+var windspeed = data.current.mph + "MPH"; 
+var humidty = data.current.humidity + " "; 
+console.log("cityInput: " + city + " - Temp: " + temp + " Wind: " + windSpeed + " | Humidity: " + humidity);
+
+$('#name').text(city);
+    $('#temp').text("Temp: " + temp);
+    $('#windspeed').text("Wind Speed: " + windSpeed);
+    $('#humidity').text("Wind Direction: " + humidity);
 
 function renderCity() {
     cityListEl.innerHTML = "";
@@ -53,6 +108,50 @@ function init() {
     localStorage.setItem("cities", JSON.stringify(cities));
 }   
 
+	
+
+var buttonClickHandler = function (event) {
+	var forecast = event.target.getAttribute("data-forecast");
+
+	if (forecast) {
+		getFeaturedCity(forecast);
+
+		forecastContainerEl.textContent = "";
+	}
+};
+
+
+function printForecastData() {
+	
+	forecastDisplayEl.empty();
+	
+	var cities = renderCity();
+  
+	 
+	for (var i = 0; i < cities.length; i ++) {
+	  var city = cities[i];
+	  
+	}
+}
+
+
+function displayForecast(cities, forecast) {
+		if (cities.length === 0) {
+			forecastContainerEl.textContent = "";
+			return;
+		}
+
+		forecast.textContent = forecast;
+
+		for (var i = 0; i < forecast.length; i++) {
+			var cityName = forecast[i];
+
+			var forecastDisplayEl = document.createElement("a");
+			forecastDisplayEl.classList = "list-item flex-row justify-space-between align-center";
+			forecastDisplayEl.setAttribute(cityName);
+	}
+};
+
 cityFormEl.addEventListener("submit", function (event) {
 	event.preventDefault();
 
@@ -80,59 +179,6 @@ cityListEl.addEventListener("click", function(event) {
 	}
 });
 
-fetch("http://api.openweathermap.org/data/2.5/forecast?q=city&appid=0a3422ed44f463b4f5d64da245e2cb6f", {
-	method: "GET",
-	cache: "reload",
-	header: " ",
-})
-	.then(function (response) {
-		return response.json();
-	})
-	.then(function (data) {
-		console.log(data);
-	});   
-	
-
-var buttonClickHandler = function (event) {
-	var forecast = event.target.getAttribute("data-forecast");
-
-	if (forecast) {
-		getFeaturedCity(forecast);
-
-		forecastContainerEl.textContent = "";
-	}
-};
-
-
-function printForecastData() {
-	
-	forecastDisplayEl.empty();
-	
-	var cities = renderCity();
-  
-	 
-	for (var i = 0; i < cities.length; i ++) {
-	  var city = cities[i];
-	  
-	}
-}
-
-function displayForecast(cities, forecast) {
-		if (cities.length === 0) {
-			forecastContainerEl.textContent = "";
-			return;
-		}
-
-		forecast.textContent = forecast;
-
-		for (var i = 0; i < forecast.length; i++) {
-			var cityName = forecast[i];
-
-			var forecastDisplayEl = document.createElement("a");
-			forecastDisplayEl.classList = "list-item flex-row justify-space-between align-center";
-			forecastDisplayEl.setAttribute(cityName);
-	}
-};
 	init();
 	cityButtonsEl.addEventListener("click", buttonClickHandler);
 	//displayForecast();
