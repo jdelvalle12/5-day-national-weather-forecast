@@ -1,5 +1,5 @@
 var cityFormEl = document.querySelector("#city-form");
-var cityInputEl = document.querySelector("#city");
+var cityInputEl = document.querySelector(".city-input");
 var cityNameSpan = document.querySelector('#city-name');
 var cityListEl = document.querySelector('#city-list');
 var cityButtonsEl = document.querySelector("#city-buttons");
@@ -12,42 +12,34 @@ var cities = [];
 var forecast = [];
 
 var apiKey = "0a3422ed44f463b4f5d64da245e2cb6f";
-var apiUrl = "http://api.openweathermap.org/data/2.5/forecast?q=" + "lat&lon" + "lon&appid=" + apiKey;
+var apiUrl = "https://api.openweathermap.org/data/2.5/weather?q=" + city + "&appid=" + apiKey + "&units=imperial";
 
 async function getWeather () {
-	var apiUrl = "http://api.openweathermap.org/data/2.5/forecast?q=" + city + "&appid=" + apiKey;
 
-	var data = await fetch(apiUrl)
+	var searchWeatherArr = document.location.search.split('&');
+
+	var query = searchWeatherArr[0].split('=').pop();
+	var format = searchWeatherArr[1].split('=').pop();
+
+	searchApi(query, format);
+
+	var apiUrl = "http://api.openweathermap.org/data/2.5/weather?q=" + city + "&appid=" + apiKey + "&units=imperial";
+
+	var city = await fetch(apiUrl)
 		.then(function (response) {
-			if (response.ok) {
+			console.log("Fetch Status: " + response.status);
+			if (response.status !== 200) {
 				console.log(response);
 				response.json().then(function (data) {
 					console.log(data);
-					displayRepos(data, user);
+					displayForecast(data, city);
 				});
 			} else {
-				alert("Error: " + response.statusText);
-			}
-		})
-		.catch(function (error) {
-			alert("Unable to connect to GitHub");
-		});
-};
-
-async function getWeather() {
-    // variable for url for CURRENT weather
-    var city = document.querySelector('input').value; // changes default value to user entered text
-
-    var apiUrl = "http://api.openweathermap.org/data/2.5/current?q=" + city + "&appid=" + apiKey;
-
-    var data = fetch(apiUrl)
-        .then(function (response) {
-            console.log("Fetch Status: " + response.status);
-            if (response.status !== 200) { 
-                alert("Error reaching Server" + "\n Status Code: " + response.status);
+				alert("Error reaching Server" + "\n Status Code: " + response.status);
             }
             return response.json(); 
         })
+
 }
 
 //fetch("http://api.openweathermap.org/data/2.5/current?q=city&appid=0a3422ed44f463b4f5d64da245e2cb6f", {
@@ -61,15 +53,16 @@ async function getWeather() {
 	//	console.log(data);
 	//});   
 
-var temp = data.current.temp + "F"; 
-var windspeed = data.current.mph + "MPH"; 
-var humidty = data.current.humidity + " "; 
-console.log("cityInput: " + city + " - Temp: " + temp + " Wind: " + windSpeed + " | Humidity: " + humidity);
+var currentTemp = document.data.currentTemp;
+var currentWindSpeed = document.data.currentWindSpeed; 
+var currentHumidity = document.data.currentHumidity; 
+
+console.log("cityInput: " + city + " - Temp: " + currentTemp + " Wind: " + currentWindSpeed + " Humidity: " + currentHumidity);
 
 $('#name').text(city);
-    $('#temp').text("Temp: " + temp);
-    $('#windspeed').text("Wind Speed: " + windSpeed);
-    $('#humidity').text("Wind Direction: " + humidity);
+$('#temperature').text("Temperature: " + currentTemp);
+$('#windspeed').text("Wind Speed: " + currentWindSpeed);
+$('#humidity').text("Humidity: " + currentHumidity);
 
 function renderCity() {
     cityListEl.innerHTML = "";
@@ -179,21 +172,6 @@ cityListEl.addEventListener("click", function(event) {
 	}
 });
 
-<<<<<<< HEAD
-=======
-fetch("http://api.openweathermap.org/data/2.5/forecast?q=lat&lon=lon&appid=0a3422ed44f463b4f5d64da245e2cb6f", {
-	method: "GET",
-	cache: "reload",
-	header: " ",
-})
-	.then(function (response) {
-		return response.json();
-	})
-	.then(function (data) {
-		console.log(data);
-	});   
-	
-
 var buttonClickHandler = function (event) {
 	var forecast = event.target.getAttribute("data-forecast");
 
@@ -204,14 +182,6 @@ var buttonClickHandler = function (event) {
 	}
 };
 
-function getWeather() {
-	var searchWeatherArr = document.location.search.split('&');
-
-	var query = searchWeatherArr[0].split('=').pop();
-	var format = searchWeatherArr[1].split('=').pop();
-
-	searchApi(query, format);
-}
 
 function printForecastData(forecast) {
 	console.log(forecast);
@@ -243,7 +213,12 @@ function displayForecast(cities, forecast) {
 			forecastDisplayEl.setAttribute(cityName);
 	}
 };
->>>>>>> 394127548c7e174548a1a6e70f184dba8614f9f6
+
+
+$(function () { // waits for page to load before any code is executed
+    $('.search-Btn').on('click', getWeather); // listener for search button
+    // insert what function to start above ^^^^^^^^^^^ set to getWeather now and includes other apis fetches in same funciton
+});
 	init();
 	cityButtonsEl.addEventListener("click", buttonClickHandler);
 	//displayForecast();

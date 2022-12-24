@@ -168,8 +168,8 @@ main {
 	height: 20rem;
 }
 /* FORM */
-.form-label,
-.form-input,
+.city-label,
+.city-input,
 .form-textarea {
 	display: block;
 }
@@ -179,7 +179,7 @@ main {
 	margin: 0 0 0 5px;
 }
 
-.form-input {
+.city-input {
 	width: 20rem;
 	padding: 3%;
 	margin: 5px 0;
