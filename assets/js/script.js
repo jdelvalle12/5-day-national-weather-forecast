@@ -12,7 +12,7 @@ var cities = [];
 var forecast = [];
 
 var apiKey = "0a3422ed44f463b4f5d64da245e2cb6f";
-var apiUrl = "http://api.openweathermap.org/data/2.5/forecast?q=" + city + "&appid=" + apiKey;
+var apiUrl = "http://api.openweathermap.org/data/2.5/forecast?q=" + "lat&lon" + "lon&appid=" + apiKey;
 
 async function getWeather () {
 	var apiUrl = "http://api.openweathermap.org/data/2.5/forecast?q=" + city + "&appid=" + apiKey;
@@ -179,6 +179,71 @@ cityListEl.addEventListener("click", function(event) {
 	}
 });
 
+<<<<<<< HEAD
+=======
+fetch("http://api.openweathermap.org/data/2.5/forecast?q=lat&lon=lon&appid=0a3422ed44f463b4f5d64da245e2cb6f", {
+	method: "GET",
+	cache: "reload",
+	header: " ",
+})
+	.then(function (response) {
+		return response.json();
+	})
+	.then(function (data) {
+		console.log(data);
+	});   
+	
+
+var buttonClickHandler = function (event) {
+	var forecast = event.target.getAttribute("data-forecast");
+
+	if (forecast) {
+		getFeaturedCity(forecast);
+
+		forecastContainerEl.textContent = "";
+	}
+};
+
+function getWeather() {
+	var searchWeatherArr = document.location.search.split('&');
+
+	var query = searchWeatherArr[0].split('=').pop();
+	var format = searchWeatherArr[1].split('=').pop();
+
+	searchApi(query, format);
+}
+
+function printForecastData(forecast) {
+	console.log(forecast);
+	
+	forecastDisplayEl.empty();
+	
+	var cities = renderCity();
+  
+	 
+	for (var i = 0; i < cities.length; i ++) {
+	  var city = cities[i];
+	  
+	}
+}
+
+function displayForecast(cities, forecast) {
+		if (cities === " ") {
+			forecastContainerEl.textContent = "";
+			return;
+		}
+
+		forecastDisplayEl.textContent = forecast;
+
+		for (var i = 0; i < forecast.length; i++) {
+			var cityName = forecast[i];
+
+			var forecastDisplayEl = document.createElement("a");
+			forecastDisplayEl.classList = "list-item flex-row justify-space-between align-center";
+			forecastDisplayEl.setAttribute(cityName);
+	}
+};
+>>>>>>> 394127548c7e174548a1a6e70f184dba8614f9f6
 	init();
 	cityButtonsEl.addEventListener("click", buttonClickHandler);
 	//displayForecast();
