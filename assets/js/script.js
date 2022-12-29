@@ -4,65 +4,53 @@ var cityNameSpan = document.querySelector('#city-name');
 var cityListEl = document.querySelector('#city-list');
 var cityButtonsEl = document.querySelector("#city-buttons");
 var forecastContainerEl = document.querySelector("#forecast-container");
-var forecastDisplayEl = document.querySelector("#forecast");
-var searchButtonEl = document.querySelector('.btn');
+var button = document.querySelector('.btn');
+var currentWeatherEl = document.querySelector('#current-weather');
 
 
 var cities = [];
 var forecast = [];
 
 var apiKey = "0a3422ed44f463b4f5d64da245e2cb6f";
-var apiUrl = "https://api.openweathermap.org/data/2.5/weather?q=" + city + "&appid=" + apiKey + "&units=imperial";
+var apiUrl = "https://api.openweathermap.org/data/2.5/weather?q=lat=lat&lon=lon&appid=0a3422ed44f463b4f5d64da245e2cb6f";
 
-async function getWeather () {
+setInterval(() {
+	
+	var month = getMonth();
+	var day = getDay();
+	var year = getYear();
+},1000)
 
-	var searchWeatherArr = document.location.search.split('&');
+async function getWeather() {
+		var nameValue = data['name'];
+		var temperatureValue = data['temperature'];
+		var humidityValue = data['humidity'];
+		var windSpeedValue = data['windSpeed'];
 
-	var query = searchWeatherArr[0].split('=').pop();
-	var format = searchWeatherArr[1].split('=').pop();
+		nameValue.innerHTML = nameValue;
+		temperatureValue.innerHTML = temperatureValue;
+		humidityValue.innerHTML = humidityValue;
+		windSpeedValue.innerHTML = windSpeedValue;
 
-	searchApi(query, format);
 
-	var apiUrl = "http://api.openweathermap.org/data/2.5/weather?q=" + city + "&appid=" + apiKey + "&units=imperial";
+button.addEventListener("click", function (){
+fetch("http://api.openweathermap.org/data/2.5/weather?q=lat=lat&lon=lon&appid=0a3422ed44f463b4f5d64da245e2cb6f")
 
-	var city = await fetch(apiUrl)
-		.then(function (response) {
-			console.log("Fetch Status: " + response.status);
-			if (response.status !== 200) {
-				console.log(response);
-				response.json().then(function (data) {
-					console.log(data);
-					displayForecast(data, city);
-				});
-			} else {
-				alert("Error reaching Server" + "\n Status Code: " + response.status);
-            }
-            return response.json(); 
-        })
-
+.then(function (response) {
+	console.log(response.status);
+	
+	if (response.status !== 200) {
+		
+		responseText.textContent = response.status;
+	}
+	return response.json();
+})
+.then(function (data) {
+	
+	console.log(data);
+});
+});
 }
-
-//fetch("http://api.openweathermap.org/data/2.5/current?q=city&appid=0a3422ed44f463b4f5d64da245e2cb6f", {
-	//method: "GET",
-	//header: "",
-//})
-	//.then(function (response) {
-		//return response.json();
-	//})
-	//.then(function (data) {
-	//	console.log(data);
-	//});   
-
-var currentTemp = document.data.currentTemp;
-var currentWindSpeed = document.data.currentWindSpeed; 
-var currentHumidity = document.data.currentHumidity; 
-
-console.log("cityInput: " + city + " - Temp: " + currentTemp + " Wind: " + currentWindSpeed + " Humidity: " + currentHumidity);
-
-$('#name').text(city);
-$('#temperature').text("Temperature: " + currentTemp);
-$('#windspeed').text("Wind Speed: " + currentWindSpeed);
-$('#humidity').text("Humidity: " + currentHumidity);
 
 function renderCity() {
     cityListEl.innerHTML = "";
@@ -172,54 +160,10 @@ cityListEl.addEventListener("click", function(event) {
 	}
 });
 
-var buttonClickHandler = function (event) {
-	var forecast = event.target.getAttribute("data-forecast");
-
-	if (forecast) {
-		getFeaturedCity(forecast);
-
-		forecastContainerEl.textContent = "";
-	}
-};
 
 
-function printForecastData(forecast) {
-	console.log(forecast);
-	
-	forecastDisplayEl.empty();
-	
-	var cities = renderCity();
-  
-	 
-	for (var i = 0; i < cities.length; i ++) {
-	  var city = cities[i];
-	  
-	}
-}
-
-function displayForecast(cities, forecast) {
-		if (cities === " ") {
-			forecastContainerEl.textContent = "";
-			return;
-		}
-
-		forecastDisplayEl.textContent = forecast;
-
-		for (var i = 0; i < forecast.length; i++) {
-			var cityName = forecast[i];
-
-			var forecastDisplayEl = document.createElement("a");
-			forecastDisplayEl.classList = "list-item flex-row justify-space-between align-center";
-			forecastDisplayEl.setAttribute(cityName);
-	}
-};
 
 
-$(function () { // waits for page to load before any code is executed
-    $('.search-Btn').on('click', getWeather); // listener for search button
-    // insert what function to start above ^^^^^^^^^^^ set to getWeather now and includes other apis fetches in same funciton
-});
+
 	init();
 	cityButtonsEl.addEventListener("click", buttonClickHandler);
-	//displayForecast();
-	

@@ -12,7 +12,7 @@
 }
 
 body {
-	background-color: var(--primary);
+	background-color: var (--primary);
 	margin: 0;
 	padding: 0;
 	font-family: "Oxygen", "Merriweather", sans-serif;
@@ -120,6 +120,7 @@ main {
 .list-group {
 	padding: 0;
 	list-style: none;
+	text-decoration: none;
 }
 
 .list-item {
@@ -128,6 +129,10 @@ main {
 	border-radius: var(--border-radius);
 	background-color: var(--light-dark);
 	color: var(--primary);
+	text-decoration: none;
+}
+
+.li data-index {
 	text-decoration: none;
 }
 
@@ -198,6 +203,75 @@ li button {
 	font-size: 1em;
 	text-decoration: none;
   }
+
+#current-weather {
+	border: 2px solid;
+	border-radius: 4px;
+	font-size: x-large;
+	width: 58rem;
+}
+
+#forecast-container {
+	display: inline-block;
+	flex-wrap: wrap;
+	grid-row-start: auto;
+	left: 8rem;
+	font-size: medium;
+}
+
+#forecast-container .day-1 {
+	display: inline-block;
+	left: 2rem;
+	grid-row-start: auto;
+	border: 2px solid;
+	width: 12rem;
+	background-color: var(--dark);
+	color: white;
+}
+
+#forecast-container .day-2 {
+	display: inline-block;
+	left: 8rem;
+	grid-row-start: auto;
+	border: 2px solid;
+	width: 12rem;
+	margin: 0 0 0 4rem;
+	background-color: var(--dark);
+	color: white;
+}
+
+#forecast-container .day-3 {
+	display: inline-block;
+	left: 6rem;
+	grid-row-start: auto;
+	border: 2px solid;
+	width: 12rem;
+	margin: 0 0 0 4rem;
+	background-color: var(--dark);
+	color: white;
+}
+
+#forecast-container .day-4 {
+	display: inline-block;
+	left: 8rem;
+	grid-row-start: auto;
+	border: 2px solid;
+	width: 12rem;
+	margin: 0 0 0 4rem;
+	background-color: var(--dark);
+	color: white;
+}
+
+#forecast-container .day-5 {
+	display: inline-block;
+	left: 10rem;
+	grid-row-start: auto;
+	border: 2px solid;
+	width: 12rem;
+	margin: 0 0 0 4rem;
+	background-color: var(--dark);
+	color: white;
+}
 
 /* HEIGHT / WIDTH UTILS */
 .min-100-vh {
