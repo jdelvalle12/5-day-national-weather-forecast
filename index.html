@@ -19,7 +19,9 @@
         integrity="sha256-iu/zLUB+QgISXBLCW/mcDi/rnf4m4uEDO0wauy76x7U="
         crossorigin="anonymous"
       ></script>
-
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.13.2/themes/smoothness/jquery-ui.css">
+      <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.13.2/jquery-ui.min.js"></script>
+    <link rel="stylesheet" href="http://openweathermap.org/img/wn/10d@2x.png">
     <title>5 Day National Weather Forecast</title>
     
     
@@ -38,81 +40,80 @@
             <div class="card">
                 <h3 class="card-header">Search For A City</h3>
                 <form id="city-form" class="card-body" method="POST">
-                    <label class="form-label" for="city"></label>
                     <input
-                        name="city"
-                        id="city"
+                        name="city-name"
+                        id="cityInput"
                         type="text"
                         autofocus="true"
-                        class="city-input"
+                        class="user-input"
                         placeholder="city"
+                        value=""
                     />
-                    <button type="submit" class="btn">Search</button>
-                </form>   
-                <span id="city-name"></span>                   
-                <div id="city-buttons" class="card-body">
-                    <ul id="city-list"></ul> 
-                </div>
+                    <button type="submit" class="search-btn">Search</button>
+                </form>                    
             </div>
 		</div>
       </aside>
 
-      <section id="current-weather" >
+      <section id="current-weather-container">
+        <div id="weather-results">
         Current Weather
-        <img src="" alt="weather-icon" class="w-icon">
-        <h1 class="name"></h1> 
-        <span id="date"></span>
-        <p id="temperature">Temperature:</p>
-        <p id="windspeed">Wind Speed:</p>
-        <p id="humidity">Humidity:</p>
+        <img src="http://openweathermap.org/img/wn/01n@2x.png" alt="weather-icon" class="w-icon">
+        </div>
       </section>
 
       
 
       <section id="forecast-container">
+        <div id="forecast-results">
         <h1>5-Day Forecast</h1>
 
     <div class="day-1">
+        <div class="forecast-results">
         <img src="" alt="weather-icon" class="w-icon">
-        <span id="date"></span>
-        <p id="temperature">Temperature:</p>
-        <p id="windspeed">Wind Speed:</p>
-        <p id="humidity">Humidity:</p>
+        <p>Temp:</p>
+        <p>Humidity:</p>
+        <p>Wind:</p>
+        </div>
     </div>       
 
     <div class="day-2">
-        <img src="" alt="weather-icon" class="w-icon">
-        <span id="date"></span>
-        <p id="temperature">Temperature:</p>
-        <p id="windspeed">Wind Speed:</p>
-        <p id="humidity">Humidity:</p>
+        <div class="forecast-results">
+            <img src="" alt="weather-icon" class="w-icon">
+            <p>Temp:</p>
+            <p>Humidity:</p>
+            <p>Wind:</p>
+            </div>
     </div>
 
     <div class="day-3">
-        <img src="" alt="weather-icon" class="w-icon">
-        <span id="date"></span>
-        <p id="temperature">Temperature:</p>
-        <p id="windspeed">Wind Speed:</p>
-        <p id="humidity">Humidity:</p>
+        <div class="forecast-results">
+            <img src="" alt="weather-icon" class="w-icon">
+            <p>Temp:</p>
+            <p>Humidity:</p>
+            <p>Wind:</p>
+            </div>
     </div>
 
     <div class="day-4">
-        <img src="" alt="weather-icon" class="w-icon">
-        <span id="date"></span>
-        <p id="temperature">Temperature:</p>
-        <p id="windspeed">Wind Speed:</p>
-        <p id="humidity">Humidity:</p>
+        <div class="forecast-results">
+            <img src="" alt="weather-icon" class="w-icon">
+            <p>Temp:</p>
+            <p>Humidity:</p>
+            <p>Wind:</p>
+            </div>
     </div>
 
     <div class="day-5">
-        <img src="" alt="weather-icon" class="w-icon">
-        <span id="date"></span>
-        <p id="temperature">Temperature:</p>
-        <p id="windspeed">Wind Speed:</p>
-        <p id="humidity">Humidity:</p>
+        <div class="forecast-results">
+            <img src="" alt="weather-icon" class="w-icon">
+            <p>Temp:</p>
+            <p>Humidity:</p>
+            <p>Wind:</p>
+            </div>
     </div>
-        </div> 
-      </section> 
+    </div>
+    </section> 
     </main>
     <script src="./assets/js/script.js"></script>
 </body>
