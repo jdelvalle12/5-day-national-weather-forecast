@@ -38,35 +38,38 @@
       <aside>
         <div class="col-12 col-md-4">
             <div class="card">
-                <h3 class="card-header">Search For A City</h3>
+                <h3 class="card-header">Search By City</h3>
                 <form id="city-form" class="card-body" method="POST">
                     <input
-                        name="city-name"
-                        id="cityInput"
+                        name="city"
+                        id="cityName"
                         type="text"
-                        autofocus="true"
                         class="user-input"
                         placeholder="city"
-                        value=""
                     />
+                    <div id="msg"></div>
                     <button type="submit" class="search-btn">Search</button>
                 </form>                    
             </div>
+            <h2>Cities</h2>
+            <span id="user-city"></span>
 		</div>
       </aside>
 
       <section id="current-weather-container">
         <div id="weather-results">
-        Current Weather
-        <img src="http://openweathermap.org/img/wn/01n@2x.png" alt="weather-icon" class="w-icon">
+        <h2>Current Weather</h2>
+        <span id="date-display" class="current-date"></span>
+        <div class="weather-icon"><img src="" alt="weather-icon"></div>
         </div>
       </section>
 
       
 
       <section id="forecast-container">
-        <div id="forecast-results">
-        <h1>5-Day Forecast</h1>
+        
+        <h2>5-Day Forecast</h2>
+        <p id="dates-display" class="five-days"></p>
 
     <div class="day-1">
         <div class="forecast-results">
@@ -79,7 +82,8 @@
 
     <div class="day-2">
         <div class="forecast-results">
-            <img src="" alt="weather-icon" class="w-icon">
+            <div class="weather-icon"><img src="" alt="weather-icon"></div>
+
             <p>Temp:</p>
             <p>Humidity:</p>
             <p>Wind:</p>
@@ -110,7 +114,7 @@
             <p>Temp:</p>
             <p>Humidity:</p>
             <p>Wind:</p>
-            </div>
+        </div>
     </div>
     </div>
     </section> 

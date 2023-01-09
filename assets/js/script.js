@@ -1,18 +1,21 @@
-var nameInputEl = document.querySelector(".city-name");
-var searchBtnEl = document.querySelector(".search-btn");
+var cityInputEl = document.querySelector("#cityName");
 var currentWeatherContainerEl = document.querySelector("#weather-results");
 var forecastContainerEl = document.querySelector("#forecast-results");
+var dateDisplayEl = document.querySelector(".current-date");
+var searchBtnEl = document.querySelector('.search');
 
+var cities = 0;
 
-
-
-
-
-var cities = [];
 var APIKey = "0a3422ed44f463b4f5d64da245e2cb6f";
-var APIUrl = "https://api.openweathermap.org/data/2.5/weather?q={cityname}&appid={APIkey}&units=imperial";
-var queryURL = "https://api.openweathermap.org/data/2.5/weather?q=" + nameInputEl + "&appid=" + APIKey + "&units=imperial";
-var iconURL = 'http://openweathermap.org/img/wn/' + icon + '.png';
+var APIUrl = "https://api.openweathermap.org/data/2.5/weather?q=city&appid=APIkey&units=imperial";
+var queryURL = "https://api.openweathermap.org/data/2.5/weather?q=" + city + "&appid=" + APIKey + "&units=imperial";
+var iconURL = 'http://openweathermap.org/img/wn/icon.png';
+
+function displayDate() {
+	var rightNow = dayjs().format('M/D/YYYY');
+	dateDisplayEl.textContent(rightNow);
+}
+
 
 function renderWeather(weather) {
 console.log(weather);
@@ -60,38 +63,41 @@ async function getWeather(currentWeather) {
 };
 getWeather();
 
-function renderForecast(forecast) {
+function renderWeatherForecast(forecast) {
 	console.log(forecast);
 
 	var resultsForecastContainerEl = document.querySelector("#forecast-results");
 
-	var temp = document.createElement("p");
-	temp.textContent = "Temp:" + forecast.main.temp + "F";
-	resultsForecastContainerEl.append(temp);
+	var fTemp = document.createElement("p");
+	fTemp.textContent = "Temp:" + forecast.main.fTemp + "F";
+	resultsForecastContainerEl.append(fTemp);
 
-	var humidity = document.createElement("p");
-	humidity.textContent = "Humidity:" + forecast.main.humidity + "%";
-	resultsForecastContainerEl.append(humidity);
+	var fHumidity = document.createElement("p");
+	fHumidity.textContent = "Humidity:" + forecast.main.fHumidity + "%";
+	resultsForecastContainerEl.append(fHumidity);
 
-	var wind = document.createElement("p");
-	wind.textContent = "Wind Speed:" + forecast.wind.speed + "mph";
-	resultsForecastContainerEl.append(wind);
+	var fWind = document.createElement("p");
+	fWind.textContent = "Wind Speed:" + forecast.fWind.speed + "mph";
+	resultsForecastContainerEl.append(fWind);
 
 	//weatherInfo.append("")
 }
 
-var queryURL = "https://api.openweathermap.org/data/2.5/forecast?q=Orlando&appid=0a3422ed44f463b4f5d64da245e2cb6f&units=imperial"
+var lat = " ";
+var lon = " ";
+var APIUrlForecast = "api.openweathermap.org/data/2.5/forecast?lat={lat}&lon={lon}&appid={API key}&units=imperial"
+var queryURL = "https://api.openweathermap.org/data/2.5/forecast?lat=" + lat + "&lon=" + lon + "&appid=" + APIKey + "&units=imperial";
 //Fetch weather forecast
-async function getWeatherForecast(forecast) {
-	var queryURL = "https://api.openweathermap.org/data/2.5/forecast?q=Orlando&appid=0a3422ed44f463b4f5d64da245e2cb6f&units=imperial";
+async function getWeatherForecast(fiveDayForecast) {
+	var forecastURL = "https://api.openweathermap.org/data/2.5/forecast?lat=Orlando&appid=0a3422ed44f463b4f5d64da245e2cb6f&units=imperial";
 
-	var forecast = await fetch(queryURL)
+	var response = await fetch(queryURL)
 	.then(function (response) {
 			if (response.ok) {
 				console.log(response);
 				response.json().then(function (data) {
 					console.log(data);
-					renderForecast(data, forecast);
+					renderWeatherForecast(data, fiveDayForecast);
 				});
 			} else {
 				alert("Error: " + response.statusText);
@@ -104,31 +110,19 @@ async function getWeatherForecast(forecast) {
 
 getWeatherForecast();
  
-function storeCity(cities) {
-	var city = document.getElementById("cityInput").value;
-	localStorage.setItem("cities", JSON.stringify(cities));
+function displayMessage(type, message) {
+	msgDiv.textContent = message;
+	msgDiv.setAttribute("class", type);
 }
-//console.log(storeCity);
 
-var formSubmitHandler = function (event) {
-	event.preventDefault();
-	if (nameInputEl) {
-		getWeather(nameInputEl);
+function renderCities() {
+	var cityName = localStorage.getItem("cityName");
 
-		currentWeatherContainerEl.textContent = "";
-		nameInputEl.value = "";
-} else {
-	alert("Please enter a city name");
-}
-};
-
-var buttonClickHandler = function (event) {
-	var city = event.target.getAttribute("city");
-
-	if (city) {
-		getFeaturedRepos(city);
-
-		currentWeatherContainerEl.textContent = "";
+	if (!cityName || !weather) {
+		return;
 	}
-};
+	userCitySpan.textContent = cityName;
+}
+
+
 
