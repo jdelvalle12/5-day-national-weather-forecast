@@ -4,12 +4,11 @@ var forecastContainerEl = document.querySelector("#forecast-results");
 var dateDisplayEl = document.querySelector(".current-date");
 var searchBtnEl = document.querySelector('.search');
 
-var cities = 0;
+var city;
 
 var APIKey = "0a3422ed44f463b4f5d64da245e2cb6f";
-var APIUrl = "https://api.openweathermap.org/data/2.5/weather?q=city&appid=APIkey&units=imperial";
 var queryURL = "https://api.openweathermap.org/data/2.5/weather?q=" + city + "&appid=" + APIKey + "&units=imperial";
-var iconURL = 'http://openweathermap.org/img/wn/icon.png';
+//var iconURL = "http://openweathermap.org/img/wn/" + icon + ".png";
 
 function displayDate() {
 	var rightNow = dayjs().format('M/D/YYYY');
@@ -38,12 +37,15 @@ console.log(weather);
 	wind.textContent = "Wind:" + weather.wind.speed + "mph";
 	resultsContainer.append(wind);
 
+	var icon = document.createElement("p");
+	icon.textContent = weather.icon;
+	resultsContainer.append(icon);
 	//weatherInfo.append("")
 };
 
 //Fetch weather by city
 async function getWeather(currentWeather) {
-	var queryURL = "https://api.openweathermap.org/data/2.5/weather?q=Orlando&appid=0a3422ed44f463b4f5d64da245e2cb6f&units=imperial";
+	var queryURL = "https://api.openweathermap.org/data/2.5/weather?q=" + cityName + "&appid=0a3422ed44f463b4f5d64da245e2cb6f&units=imperial";
 
 	var response = await fetch(queryURL)
 	.then(function (response) {
@@ -80,6 +82,9 @@ function renderWeatherForecast(forecast) {
 	fWind.textContent = "Wind Speed:" + forecast.fWind.speed + "mph";
 	resultsForecastContainerEl.append(fWind);
 
+	var fIcon = document.createElement("p");
+	fIcon.textContent = weather.icon;
+	resultsContainer.append(fIcon);
 	//weatherInfo.append("")
 }
 
@@ -89,7 +94,7 @@ var APIUrlForecast = "api.openweathermap.org/data/2.5/forecast?lat={lat}&lon={lo
 var queryURL = "https://api.openweathermap.org/data/2.5/forecast?lat=" + lat + "&lon=" + lon + "&appid=" + APIKey + "&units=imperial";
 //Fetch weather forecast
 async function getWeatherForecast(fiveDayForecast) {
-	var forecastURL = "https://api.openweathermap.org/data/2.5/forecast?lat=Orlando&appid=0a3422ed44f463b4f5d64da245e2cb6f&units=imperial";
+	var queryURL = "https://api.openweathermap.org/data/2.5/forecast?lat=Orlando&appid=0a3422ed44f463b4f5d64da245e2cb6f&units=imperial";
 
 	var response = await fetch(queryURL)
 	.then(function (response) {
@@ -110,19 +115,32 @@ async function getWeatherForecast(fiveDayForecast) {
 
 getWeatherForecast();
  
-function displayMessage(type, message) {
-	msgDiv.textContent = message;
-	msgDiv.setAttribute("class", type);
+function displayMessage(type, weather) {
+	weatherDiv.textContent = weather;
+	weatherDiv.setAttribute("class", type);
 }
 
 function renderCities() {
 	var cityName = localStorage.getItem("cityName");
 
-	if (!cityName || !weather) {
+	if (!cityName === null ) {
 		return;
 	}
 	userCitySpan.textContent = cityName;
 }
 
+searchBtnEl.addEventListener("click", function(event) {
+	event.preventDefault();
 
+var cityName = document.querySelector("#cityName").value;
+
+	if(cityName ===  " ") {
+		displayMessage("error", "City cannot be blank");
+	} else {
+		displayMessage(cityName, weather);
+
+		localStorage.setItem("cityName", cityName);
+		renderCities();
+	}
+});
 
