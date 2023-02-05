@@ -8,7 +8,7 @@ var searchHistory = [];
 var city = [];
 
 var APIKey = "0a3422ed44f463b4f5d64da245e2cb6f";
-var queryURL = "https://api.openweathermap.org/data/2.5/weather?q=" + city + "&appid=" + APIKey + "&units=imperial";
+var queryURL = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${APIKey}&units=imperial`;
 //var iconURL = "http://openweathermap.org/img/wn/" + icon + ".png";
 
 function renderSearchHistory() {
@@ -43,6 +43,7 @@ function getHistory() {
 
 function renderWeather(city, weather) {
 console.log(weather);
+	
 	var date = dayjs().format('M/D/YYYY')
 	var resultsContainer = document.querySelector("#weather-results");
 
@@ -71,49 +72,48 @@ console.log(weather);
 
 
 function renderForecast(city, forecast) {
-	console.log(forecast);
+	console.log(forecast); 
+
+	// var day1 = data.daily[1].temp;
+	// var day1 = data.daily[1].humidity;
+	// var day1 = data.daily[1].wind.speed;
+	// var day1 = data.daily[1].weather[0].icon;
+
+
 	var date = dayjs().format('M/D/YYYY');
-	var resultsForecastContainer = document.querySelector(".forecast-results");
+	var resultsContainer = document.querySelector(".weather-results");
 
 	var city = document.createElement("h1");
-	city.textContent = `${city} + ${date}`;
-	resultsForecastContainer.append(city);
+	city.textContent = `${city}` + `${date}`;
+	resultsContainer.append(city);
 
 	var temp = document.createElement("p");
 	temp.textContent = "Temp:" + forecast.main.temp + "F";
-	resultsForecastContainer.append(temp);
+	resultsContainer.append(temp);
 
 	var humidity = document.createElement("p");
 	humidity.textContent = "Humidity:" + forecast.main.humidity + "%";
-	resultsForecastContainer.append(humidity);
+	resultsContainer.append(humidity);
 
 	var wind = document.createElement("p");
 	wind.textContent = "Wind Speed:" + forecast.wind.speed + "mph";
-	resultsForecastContainer.append(wind);
+	resultsContainer.append(wind);
 
 	var iconURL = `https://openweathermap.org/img/w/${weather.weather[0].icon}.png`;
 	var icon = document.createElement("img");
 	icon.setAttribute('src', iconURL) ;
-	resultsForecastContainer.append(icon);
+	resultsContainer.append(icon);
 	
-}
+	
+};
 
 
 function renderItems(city, data) {
-	renderWeather(city, data.list[0], data.city.timeZone)
+	
+	renderWeather(city, data.list[0], data.city.timeZone);
 
 	//call function to render forecast
-
-
-	 for(var i = 0; i < data.list.length; i += 8) {
-	
-		var tempIcon = data.list[i].weather[0].icon;
-		var tempTemp = data.list[i].main.temp;
-		var tempHumidity = data.list[i].main.humidity;
-		var tempWind = data.list[i].wind.speed;
-		var tempCity = data.city.name;
-	 }
-	
+	renderForecast(city, data.list[0], data.city.timeZone);
 	
 	// forecast.eachDay(days) 
 	// 	var date = days().format('M/D/YYYY');
@@ -134,7 +134,7 @@ function fetchWeather(location) {
 	.then(function(res){
 		return res.json()
 	}).then(function(data){
-		renderItems(city, data)
+		renderItems(city, data)		
 	})
 	.catch(function(err){
 		console.log(err)
