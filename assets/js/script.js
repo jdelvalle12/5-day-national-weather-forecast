@@ -6,6 +6,7 @@ var searchBtnEl = document.querySelector('.search-btn');
 var searchHistoryContainer = document.querySelector('#history');
 var searchHistory = [];
 var city = [];
+var forecast = [];
 
 var APIKey = "0a3422ed44f463b4f5d64da245e2cb6f";
 var queryURL = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${APIKey}&units=imperial`;
@@ -74,61 +75,60 @@ console.log(weather);
 
 function renderForecast(forecast) {
 	console.log(forecast); 
-	var forecastDisplayEl = document.querySelector(".forecast-results");
+	
 	// var day1 = data.daily[1].temp;
 	// var day1 = data.daily[1].humidity;
 	// var day1 = data.daily[1].wind.speed;
 	// var day1 = data.daily[1].weather[0].icon;
 
-
 	var fday1 = dayjs().format('M/D/YYYY');
-	var resultsContainer = document.querySelector(".weather-results");
+	var resultsForecastContainer = document.querySelector(".forecast-results");
 
-	var fday1 = document.createElement("h1").innerHTML = `${fday1}` + `${fday1}`;
-	// city.textContent = `${city}` + `${date}`;
-	// resultsContainer.append(city);
+	var fday1 = document.createElement("h1").innerHTML = `${fday1}`;
+	fday1.textContent = `${fday1}`;
+	resultsForecastContainer.append(fday1);
 
 	var ftemp1 = document.createElement("p");
 	ftemp1.textContent = "Temp:" + forecast.main.temp + "F";
-	resultsContainer.append(ftemp1);
+	resultsForecastContainer.append(ftemp1);
 
 	var fhumidity1 = document.createElement("p");
 	fhumidity1.textContent = "Humidity:" + forecast.main.humidity + "%";
-	resultsContainer.append(fhumidity1);
+	resultsForecastContainer.append(fhumidity1);
 
 	var fwind1 = document.createElement("p");
 	fwind1.textContent = "Wind Speed:" + forecast.wind.speed + "mph";
-	resultsContainer.append(fwind1);
+	resultsForecastContainer.append(fwind1);
 
 	var iconURL = `https://openweathermap.org/img/w/${weather.weather[0].icon}.png`;
 	var ficon1 = document.createElement("img");
 	ficon1.setAttribute('src', iconURL) ;
-	resultsContainer.append(ficon1);
+	resultsForecastContainer.append(ficon1);
 	
 
 	var fday2 = dayjs().format('M/D/YYYY');
-	var resultsContainer = document.querySelector(".weather-results");
+	var resultsForecastContainer = document.querySelector(".forecast-results");
 
 	var fday2 = document.createElement("h1").innerHTML = `${fday2}`;
-	// city.textContent = `${city}` + `${date}`;
-	// resultsContainer.append(city);
+	fday2.textContent =`${fday2}`;
+	resultsForecastContainer.append(fday2);
 
 	var ftemp2 = document.createElement("p");
 	ftemp2.textContent = "Temp:" + forecast.main.temp + "F";
-	resultsContainer.append(ftemp2);
+	resultsForecastContainer.append(ftemp2);
 
 	var fhumidity2 = document.createElement("p");
 	fhumidity2.textContent = "Humidity:" + forecast.main.humidity + "%";
-	resultsContainer.append(fhumidity2);
+	resultsForecastContainer.append(fhumidity2);
 
 	var fwind2 = document.createElement("p");
 	fwind2.textContent = "Wind Speed:" + forecast.wind.speed + "mph";
-	resultsContainer.append(fwind2);
+	resultsForecastContainer.append(fwind2);
 
 	var iconURL = `https://openweathermap.org/img/w/${weather.weather[1].icon}.png`;
 	var ficon2 = document.createElement("img");
 	ficon2.setAttribute('src', iconURL) ;
-	resultsContainer.append(ficon2);
+	resultsForecastContainer.append(ficon2);
 	
 };
 
@@ -140,6 +140,9 @@ function renderItems(city, data) {
 	//call function to render forecast
 	renderForecast(data.list[1], data.timeZone);
 	renderForecast(data.list[2], data.timeZone);
+	renderForecast(data.list[3], data.timeZone);
+	renderForecast(data.list[4], data.timeZone);
+	renderForecast(data.list[5], data.timeZone);
 	// forecast.eachDay(days) 
 	// 	var date = days().format('M/D/YYYY');
 	// 	var days = [];
