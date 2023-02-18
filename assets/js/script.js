@@ -73,62 +73,33 @@ console.log(weather);
 };
 
 
-function renderForecast(forecast) {
+
+function renderForecast(day,forecast) {
 	console.log(forecast); 
 	
-	// var day1 = data.daily[1].temp;
-	// var day1 = data.daily[1].humidity;
-	// var day1 = data.daily[1].wind.speed;
-	// var day1 = data.daily[1].weather[0].icon;
-
-	var fday1 = dayjs().format('M/D/YYYY');
+	var day = dayjs().format('M/D/YYYY');
 	var resultsForecastContainer = document.querySelector(".forecast-results");
 
-	var fday1 = document.createElement("h1").innerHTML = `${fday1}`;
-	fday1.textContent = `${fday1}`;
-	resultsForecastContainer.append(fday1);
+	var day = document.createElement("h1").innerHTML = `${day}`;
+	day.textContent = `${day}`;
+	resultsForecastContainer.append(day);
 
-	var ftemp1 = document.createElement("p");
-	ftemp1.textContent = "Temp:" + forecast.main.temp + "F";
-	resultsForecastContainer.append(ftemp1);
+	var temp = document.createElement("p");
+	temp.textContent = "Temp:" + forecast.main.temp + "F";
+	resultsForecastContainer.append(temp);
 
-	var fhumidity1 = document.createElement("p");
-	fhumidity1.textContent = "Humidity:" + forecast.main.humidity + "%";
-	resultsForecastContainer.append(fhumidity1);
+	var humidity = document.createElement("p");
+	humidity.textContent = "Humidity:" + forecast.main.humidity + "%";
+	resultsForecastContainer.append(humidity);
 
-	var fwind1 = document.createElement("p");
-	fwind1.textContent = "Wind Speed:" + forecast.wind.speed + "mph";
-	resultsForecastContainer.append(fwind1);
+	var wind = document.createElement("p");
+	wind.textContent = "Wind Speed:" + forecast.wind.speed + "mph";
+	resultsForecastContainer.append(wind);
 
 	var iconURL = `https://openweathermap.org/img/w/${weather.weather[0].icon}.png`;
-	var ficon1 = document.createElement("img");
-	ficon1.setAttribute('src', iconURL) ;
-	resultsForecastContainer.append(ficon1);
-	
-
-	var fday2 = dayjs().format('M/D/YYYY');
-	var resultsForecastContainer = document.querySelector(".forecast-results");
-
-	var fday2 = document.createElement("h1").innerHTML = `${fday2}`;
-	fday2.textContent =`${fday2}`;
-	resultsForecastContainer.append(fday2);
-
-	var ftemp2 = document.createElement("p");
-	ftemp2.textContent = "Temp:" + forecast.main.temp + "F";
-	resultsForecastContainer.append(ftemp2);
-
-	var fhumidity2 = document.createElement("p");
-	fhumidity2.textContent = "Humidity:" + forecast.main.humidity + "%";
-	resultsForecastContainer.append(fhumidity2);
-
-	var fwind2 = document.createElement("p");
-	fwind2.textContent = "Wind Speed:" + forecast.wind.speed + "mph";
-	resultsForecastContainer.append(fwind2);
-
-	var iconURL = `https://openweathermap.org/img/w/${weather.weather[1].icon}.png`;
-	var ficon2 = document.createElement("img");
-	ficon2.setAttribute('src', iconURL) ;
-	resultsForecastContainer.append(ficon2);
+	var icon = document.createElement("img");
+	icon.setAttribute('src', iconURL) ;
+	resultsForecastContainer.append(icon);
 	
 };
 
@@ -138,19 +109,21 @@ function renderItems(city, data) {
 	renderWeather(city, data.list[0], data.city.timeZone);
 
 	//call function to render forecast
-	renderForecast(data.list[1], data.timeZone);
-	renderForecast(data.list[2], data.timeZone);
-	renderForecast(data.list[3], data.timeZone);
-	renderForecast(data.list[4], data.timeZone);
-	renderForecast(data.list[5], data.timeZone);
-	// forecast.eachDay(days) 
-	// 	var date = days().format('M/D/YYYY');
-	// 	var days = [];
-	// 	var name = days[date.getDay()];
-	// 	var dayBlock = document.createElement('div');
-	// 	dayBlock.innerHTML = "";
-	// 	forecast.append(dayBlock);
-	}
+	renderForecast(days, data.list[1], data.timeZone);
+	for (var i = 1; i <= 5; i++) {
+	
+	var dailyForecast = document.createElement(weather.daily[i]);
+	displayFiveDayForecast(dailyForecast);
+	
+	forecast.eachDay(days) 
+		var date = days().format('M/D/YYYY');
+		var days = [];
+		var name = days[date.getDay()];
+		var dayBlock = document.createElement('div');
+		dayBlock.innerHTML = "";
+		forecast.append(dayBlock);
+	};
+}
 	
 
 function fetchWeather(location) {
