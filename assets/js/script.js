@@ -111,7 +111,6 @@ function displayFiveDayForecast(forecast) {
 	for (var i = 0; i < forecast.length; i++) {
 		var dayBlock = document.createElement('div')
 		dayBlock.textContent('city', temp.name)
-		dayBlock.textContent('weather', temp.weather[0].main)
 		dayBlock.textContent('temp', temp.main.temp)
 		dayBlock.textContent('humidity', humidity.main.humidity)
 		dayBlock.textContent('wind', wind.speed.wind)
@@ -150,13 +149,13 @@ function displayFiveDayForecast(forecast) {
 	// 		var icon = date.list[i].forecast[0].icon;
 
 
-function renderItems(city, data ) {
+function renderItems( city, data ) {
 	//call function to render current weather
 	renderWeather(city, data.list[0]);
 	//call function to render forecast
 
-	renderForecast(city, data.list[0]);
-}		
+	renderForecast(_data_.list[0]);
+};		
 
 function fetchWeather(location) {
 	var {lat} = location;
