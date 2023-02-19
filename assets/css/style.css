@@ -121,6 +121,7 @@ main {
 	padding: 0;
 	list-style: none;
 	text-decoration: none;
+	background-color: #a56ae0;
 }
 
 .list-item {
@@ -137,7 +138,7 @@ main {
 }
 
 .list-item:hover {
-	background-color: var(--dark);
+	background-color: rgb(173, 126, 236);
 }
 
 .status-icon {
@@ -204,73 +205,102 @@ li button {
 	text-decoration: none;
   }
 
+.history-btn {
+
+	background-color: rgb(174, 125, 231);
+}
+
+
 #current-weather-container {
 	border: 2px solid;
 	border-radius: 4px;
 	font-size: x-large;
 	width: 58rem;
+	background-color: #6a6ce0;
+	color: whitesmoke ;
 }
 
-#forecast-container {
-	display: inline-block;
+#forecast-weather-container {
+	position: relative;
+	display: block;
 	flex-wrap: wrap;
 	grid-row-start: auto;
 	left: 8rem;
 	font-size: medium;
+	flex-direction: row;
 }
 
-#forecast-container .day-1 {
-	display: inline-block;
-	left: 2rem;
+#forecast-weather-results {
+	position: relative;
+	display: block;
+	flex-wrap: wrap;
+	grid-row-start: auto;
+	font-size: medium;
+	flex-direction: row;
+}
+
+.fday {
+	flex-direction: row;
+	position: relative;
+	display: grid;
+	left: 1rem;
 	grid-row-start: auto;
 	border: 2px solid;
 	width: 12rem;
-	background-color: var(--dark);
-	color: white;
+	background-color: rgb(81, 81, 149);
+	color: whitesmoke;
 }
 
-#forecast-container .day-2 {
-	display: inline-block;
-	left: 8rem;
-	grid-row-start: auto;
-	border: 2px solid;
-	width: 12rem;
-	margin: 0 0 0 4rem;
-	background-color: var(--dark);
-	color: white;
-}
-
-#forecast-container .day-3 {
-	display: inline-block;
-	left: 6rem;
-	grid-row-start: auto;
-	border: 2px solid;
-	width: 12rem;
-	margin: 0 0 0 4rem;
-	background-color: var(--dark);
-	color: white;
-}
-
-#forecast-container .day-4 {
-	display: inline-block;
-	left: 8rem;
+.fday2 {
+	flex-direction: row;
+	position: relative;
+	display: grid;
+	left: 12rem;
 	grid-row-start: auto;
 	border: 2px solid;
 	width: 12rem;
 	margin: 0 0 0 4rem;
-	background-color: var(--dark);
-	color: white;
+	background-color: rgb(81, 81, 149);
+	color: whitesmoke;
 }
 
-#forecast-container .day-5 {
-	display: inline-block;
-	left: 10rem;
+.fday3 {
+	flex-direction: row;
+	position: relative;
+	display: grid;
+	left: 27rem;
 	grid-row-start: auto;
 	border: 2px solid;
 	width: 12rem;
 	margin: 0 0 0 4rem;
-	background-color: var(--dark);
-	color: white;
+	background-color: rgb(81, 81, 149);
+	color: whitesmoke;
+}
+
+.fday4 {
+	flex-direction: row;
+	position: relative;
+	display: grid;
+	left: 42rem;
+	grid-row-start: auto;
+	border: 2px solid;
+	width: 12rem;
+	margin: 0 0 0 4rem;
+	background-color: rgb(81, 81, 149);
+	color: whitesmoke;
+}
+
+.fday5 {
+	flex-direction: row;
+	position: relative;
+	display: grid;
+	left: 57rem;
+	grid-row-start: auto;
+	border: 2px solid;
+	width: 12rem;
+	margin: 0 0 0 4rem;
+	background-color: rgb(81, 81, 149);
+	color: whitesmoke;
 }
 
 /* HEIGHT / WIDTH UTILS */
