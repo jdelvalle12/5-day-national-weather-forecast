@@ -23,8 +23,10 @@ Current known bugs to the app, the weather forecast for the next five days not d
 
 ## Link to Website
 
-
+https://jdelvalle12.github.io/5-day-national-weather-forecast/ 
 
 ## Screenshot
 
+![image](https://user-images.githubusercontent.com/104731082/219969155-10e1c819-a929-47ab-9fb4-1bec4a575fcd.png)
+![image](https://user-images.githubusercontent.com/104731082/219969189-350ad586-df3d-4eb3-8c8c-f288f3e34334.png)
 
