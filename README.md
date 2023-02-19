@@ -1,9 +1,8 @@
 # 5-day-national-weather-forecast
-# day-planner
 
 By Jose Del Valle
 
-A weather app used to display the weather in your areas, as well as in others.
+An app used to display my skills in JavaScript.
 
 ## Technologies Used
 
