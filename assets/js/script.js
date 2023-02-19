@@ -1,9 +1,10 @@
 var cityInputEl = document.querySelector("#cityName");
 var resultsContainer = document.querySelector("#weather-results");
-var resultsForecastContainer = document.querySelector(".forecast-results");
-var dateDisplayEl = document.querySelector(".current-date");
+var resultsForecastWeatherContainer = document.querySelector(".forecast-weather-results");
+// var dateDisplayEl = document.querySelector(".current-date");
 var searchBtnEl = document.querySelector('.search-btn');
 var searchHistoryContainer = document.querySelector('#history');
+var fiveDayForecastContainer = document.querySelector('.div');
 var searchHistory = [];
 var city = [];
 var forecast = [];
@@ -74,57 +75,88 @@ console.log(weather);
 
 
 
-function renderForecast(day,forecast) {
-	console.log(forecast); 
+function renderForecast(forecast) {
+// console.log(forecast);	
 	
-	var day = dayjs().format('M/D/YYYY');
-	var resultsForecastContainer = document.querySelector(".forecast-results");
+	var fday = dayjs().format('M/D/YYYY');
+	var resultsForecastWeatherContainer = document.querySelector(".forecast-weather-results");
+	
+	var fday = document.createElement("h1").innerHTML = `${fday}`;
+	fday.textContent = `${fday}`;
+	resultsForecastWeatherContainer.append(fday);
+	
+	var ftemp = document.createElement("p");
+	ftemp.textContent = "Temp:" + forecast.main.temp + "F";
+	resultsForecastWeatherContainer.append(ftemp);
+	
+	var fhumidity = document.createElement("p");
+	fhumidity.textContent = "Humidity:" + forecast.main.humidity + "%";
+	resultsForecastWeatherContainer.append(fhumidity);
+	
+	var fwind = document.createElement("p");
+	fwind.textContent = "Wind Speed:" + forecast.wind.speed + "mph";
+	resultsForecastWeatherContainer.append(fwind);
 
-	var day = document.createElement("h1").innerHTML = `${day}`;
-	day.textContent = `${day}`;
-	resultsForecastContainer.append(day);
-
-	var temp = document.createElement("p");
-	temp.textContent = "Temp:" + forecast.main.temp + "F";
-	resultsForecastContainer.append(temp);
-
-	var humidity = document.createElement("p");
-	humidity.textContent = "Humidity:" + forecast.main.humidity + "%";
-	resultsForecastContainer.append(humidity);
-
-	var wind = document.createElement("p");
-	wind.textContent = "Wind Speed:" + forecast.wind.speed + "mph";
-	resultsForecastContainer.append(wind);
-
-	var iconURL = `https://openweathermap.org/img/w/${weather.weather[0].icon}.png`;
-	var icon = document.createElement("img");
-	icon.setAttribute('src', iconURL) ;
-	resultsForecastContainer.append(icon);
+	var iconURL = `https://openweathermap.org/img/w/${forecast.weather[0].icon}.png`;
+	var ficon = document.createElement("img");
+	ficon.setAttribute('src', iconURL) ;
+	resultsForecastWeatherContainer.append(ficon);
 	
 };
 
-
-function renderItems(city, data) {
+function displayFiveDayForecast(forecast) {
+	console.log(forecast); 
+	resultsForecastWeatherContainer.innerHTML = "";
 	
-	renderWeather(city, data.list[0], data.city.timeZone);
-
-	//call function to render forecast
-	renderForecast(days, data.list[1], data.timeZone);
-	for (var i = 1; i <= 5; i++) {
-	
-	var dailyForecast = document.createElement(weather.daily[i]);
-	displayFiveDayForecast(dailyForecast);
-	
-	forecast.eachDay(days) 
-		var date = days().format('M/D/YYYY');
-		var days = [];
-		var name = days[date.getDay()];
-		var dayBlock = document.createElement('div');
-		dayBlock.innerHTML = "";
-		forecast.append(dayBlock);
+	for (var i = 0; i < forecast.length; i++) {
+		var dayBlock = document.createElement('div')
+		dayBlock.textContent('city', temp.name)
+		dayBlock.textContent('weather', temp.weather[0].main)
+		dayBlock.textContent('temp', temp.main.temp)
+		dayBlock.textContent('humidity', humidity.main.humidity)
+		dayBlock.textContent('wind', wind.speed.wind)
+		icon.setAttribute('src', iconURL)
+		dayBlock.setAttribute('display-data', forecastWeather[i])
+		dayBlock.textContent = forecastWeather[i]
+		resultsForecastWeatherContainer.append(dayBlock);
+		
+		};	
 	};
-}
-	
+
+// 	for (var i = forecast.length + 5; i > 0; i++) {
+// 	for (var i = 1; i < data.list.length; i++) {
+// 		var date = data.list[i].dt_txt.indexOf(dayjs().format('M/D/YYYY'));
+// 		if (date > -1) {
+// 			temp.push( data.list[i].main.temp);
+// 			humidity.push( data.list[i].main.humidity);
+// 			wind.push(data.list[i].wind.speed);
+// 			icon.push(date.list[i].forecast[0].id);
+// 			}
+// 		};	
+// 	};
+// }
+
+
+	// forecast.eachDay(days) 
+	// var date = dayjs().format('M/D/YYYY');
+	// var days = [];
+	// var name = days[date.getDay()];			
+	// dayBlock.innerHTML = "";
+	// forecast.append(dayBlock);
+	// 		var city = data.city.name;
+	// 		var temp = data.list[i].main.temp;
+	// 		var humidity = data.list[i].main.humidity
+	// 		var wind = data.list[i].wind.speed;
+	// 		var icon = date.list[i].forecast[0].icon;
+
+
+function renderItems(city, data ) {
+	//call function to render current weather
+	renderWeather(city, data.list[0]);
+	//call function to render forecast
+
+	renderForecast(city, data.list[0]);
+}		
 
 function fetchWeather(location) {
 	var {lat} = location;
