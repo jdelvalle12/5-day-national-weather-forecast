@@ -138,12 +138,8 @@ main {
 }
 
 .list-item:hover {
-<<<<<<< HEAD
 	color: rgb(102, 102, 245);
 	background-color: var(--dark);
-=======
-	background-color: rgb(173, 126, 236);
->>>>>>> 6927843071d64d0a2cad3eef777f714da5bfe5cc
 }
 
 .status-icon {
@@ -221,7 +217,6 @@ li button {
 	border-radius: 4px;
 	font-size: medium;
 	width: 58rem;
-<<<<<<< HEAD
 	height: 20rem;
 	display: flex;
 	background-color: aqua;
@@ -234,23 +229,10 @@ li button {
 	justify-content: space-between;
 	align-items: center;
 	margin-top: 10px;
-=======
-	background-color: #6a6ce0;
-	color: whitesmoke ;
-}
-
-#forecast-weather-container {
-	position: relative;
-	display: block;
-	flex-wrap: wrap;
-	grid-row-start: auto;
-	left: 8rem;
->>>>>>> 6927843071d64d0a2cad3eef777f714da5bfe5cc
 	font-size: medium;
 	flex-direction: row;
 }
 
-<<<<<<< HEAD
 #forecast-container .day-1 {
 	display: inline-flex;
 	flex-wrap: wrap;
@@ -271,80 +253,6 @@ li button {
 }
 
  
-=======
-#forecast-weather-results {
-	position: relative;
-	display: block;
-	flex-wrap: wrap;
-	grid-row-start: auto;
-	font-size: medium;
-	flex-direction: row;
-}
-
-.fday {
-	flex-direction: row;
-	position: relative;
-	display: grid;
-	left: 1rem;
-	grid-row-start: auto;
-	border: 2px solid;
-	width: 12rem;
-	background-color: rgb(81, 81, 149);
-	color: whitesmoke;
-}
-
-.fday2 {
-	flex-direction: row;
-	position: relative;
-	display: grid;
-	left: 12rem;
-	grid-row-start: auto;
-	border: 2px solid;
-	width: 12rem;
-	margin: 0 0 0 4rem;
-	background-color: rgb(81, 81, 149);
-	color: whitesmoke;
-}
-
-.fday3 {
-	flex-direction: row;
-	position: relative;
-	display: grid;
-	left: 27rem;
-	grid-row-start: auto;
-	border: 2px solid;
-	width: 12rem;
-	margin: 0 0 0 4rem;
-	background-color: rgb(81, 81, 149);
-	color: whitesmoke;
-}
-
-.fday4 {
-	flex-direction: row;
-	position: relative;
-	display: grid;
-	left: 42rem;
-	grid-row-start: auto;
-	border: 2px solid;
-	width: 12rem;
-	margin: 0 0 0 4rem;
-	background-color: rgb(81, 81, 149);
-	color: whitesmoke;
-}
-
-.fday5 {
-	flex-direction: row;
-	position: relative;
-	display: grid;
-	left: 57rem;
-	grid-row-start: auto;
-	border: 2px solid;
-	width: 12rem;
-	margin: 0 0 0 4rem;
-	background-color: rgb(81, 81, 149);
-	color: whitesmoke;
-}
->>>>>>> 6927843071d64d0a2cad3eef777f714da5bfe5cc
 
 /* HEIGHT / WIDTH UTILS */
 .min-100-vh {
