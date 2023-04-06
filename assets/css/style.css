@@ -121,7 +121,6 @@ main {
 	padding: 0;
 	list-style: none;
 	text-decoration: none;
-	background-color: #a56ae0;
 }
 
 .list-item {
@@ -206,12 +205,6 @@ li button {
 	text-decoration: none;
   }
 
-.history-btn {
-
-	background-color: rgb(174, 125, 231);
-}
-
-
 #current-weather-container {
 	border: 2px solid;
 	border-radius: 4px;
@@ -230,7 +223,6 @@ li button {
 	align-items: center;
 	margin-top: 10px;
 	font-size: medium;
-	flex-direction: row;
 }
 
 #forecast-container .day-1 {
