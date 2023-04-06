@@ -137,6 +137,7 @@ main {
 }
 
 .list-item:hover {
+	color: rgb(102, 102, 245);
 	background-color: var(--dark);
 }
 
@@ -207,71 +208,43 @@ li button {
 #current-weather-container {
 	border: 2px solid;
 	border-radius: 4px;
-	font-size: x-large;
+	font-size: medium;
 	width: 58rem;
+	height: 20rem;
+	display: flex;
+	background-color: aqua;
 }
 
+
 #forecast-container {
-	display: inline-block;
-	flex-wrap: wrap;
-	grid-row-start: auto;
-	left: 8rem;
+	display: flex;
+	flex-wrap: nowrap;
+	justify-content: space-between;
+	align-items: center;
+	margin-top: 10px;
 	font-size: medium;
 }
 
 #forecast-container .day-1 {
-	display: inline-block;
-	left: 2rem;
-	grid-row-start: auto;
+	display: inline-flex;
+	flex-wrap: wrap;
 	border: 2px solid;
 	width: 12rem;
+	margin: 0 1rem;
 	background-color: var(--dark);
 	color: white;
 }
 
-#forecast-container .day-2 {
-	display: inline-block;
-	left: 8rem;
-	grid-row-start: auto;
-	border: 2px solid;
-	width: 12rem;
-	margin: 0 0 0 4rem;
-	background-color: var(--dark);
-	color: white;
+
+.forecast-results {
+	display: flex;
+	flex-direction: row;
+	width: 70rem;
+	height: auto;
+	
 }
 
-#forecast-container .day-3 {
-	display: inline-block;
-	left: 6rem;
-	grid-row-start: auto;
-	border: 2px solid;
-	width: 12rem;
-	margin: 0 0 0 4rem;
-	background-color: var(--dark);
-	color: white;
-}
-
-#forecast-container .day-4 {
-	display: inline-block;
-	left: 8rem;
-	grid-row-start: auto;
-	border: 2px solid;
-	width: 12rem;
-	margin: 0 0 0 4rem;
-	background-color: var(--dark);
-	color: white;
-}
-
-#forecast-container .day-5 {
-	display: inline-block;
-	left: 10rem;
-	grid-row-start: auto;
-	border: 2px solid;
-	width: 12rem;
-	margin: 0 0 0 4rem;
-	background-color: var(--dark);
-	color: white;
-}
+ 
 
 /* HEIGHT / WIDTH UTILS */
 .min-100-vh {
