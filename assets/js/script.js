@@ -1,11 +1,15 @@
 var cityInputEl = document.querySelector("#cityName");
 var resultsContainer = document.querySelector("#weather-results");
-var resultsForecastContainer = document.querySelector(".forecast-results");
-var dateDisplayEl = document.querySelector(".current-date");
+var resultsForecastWeatherContainer = document.querySelector(".forecast-weather-results");
+// var dateDisplayEl = document.querySelector(".current-date");
 var searchBtnEl = document.querySelector('.search-btn');
 var searchHistoryContainer = document.querySelector('#history');
+var forecastWeatherResults = document.querySelector('.forecast-weather-results');
 var searchHistory = [];
 var city = [];
+var forecast = [];
+var date = [];
+
 
 var APIKey = "0a3422ed44f463b4f5d64da245e2cb6f";
 var queryURL = `https://api.openweathermap.org/data/2.5/weather?appid=${APIKey}&units=imperial&q=`;
