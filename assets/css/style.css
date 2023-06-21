@@ -122,7 +122,6 @@ main {
 	padding: 0;
 	list-style: none;
 	text-decoration: none;
-	background-color: #a56ae0;
 }
 
 .list-item {
@@ -139,7 +138,8 @@ main {
 }
 
 .list-item:hover {
-	background-color: rgb(173, 126, 236);
+	color: rgb(102, 102, 245);
+	background-color: var(--dark);
 }
 
 .status-icon {
@@ -206,104 +206,46 @@ li button {
 	text-decoration: none;
   }
 
-.history-btn {
-
-	background-color: rgb(174, 125, 231);
-}
-
-
 #current-weather-container {
 	border: 2px solid;
 	border-radius: 4px;
-	font-size: x-large;
+	font-size: medium;
 	width: 58rem;
-	background-color: #6a6ce0;
-	color: whitesmoke ;
+	height: 20rem;
+	display: flex;
+	background-color: aqua;
 }
 
-#forecast-weather-container {
-	position: relative;
-	display: block;
-	flex-wrap: wrap;
-	grid-row-start: auto;
-	left: 8rem;
+
+#forecast-container {
+	display: flex;
+	flex-wrap: nowrap;
+	justify-content: space-between;
+	align-items: center;
+	margin-top: 10px;
 	font-size: medium;
-	flex-direction: row;
 }
 
-#forecast-weather-results {
-	position: relative;
-	display: block;
+#forecast-container .day-1 {
+	display: inline-flex;
 	flex-wrap: wrap;
-	grid-row-start: auto;
-	font-size: medium;
-	flex-direction: row;
-}
-
-.fday {
-	flex-direction: row;
-	position: relative;
-	display: grid;
-	left: 1rem;
-	grid-row-start: auto;
 	border: 2px solid;
 	width: 12rem;
-	background-color: rgb(81, 81, 149);
-	color: whitesmoke;
+	margin: 0 1rem;
+	background-color: var(--dark);
+	color: white;
 }
 
-.fday2 {
-	flex-direction: row;
-	position: relative;
-	display: grid;
-	left: 12rem;
-	grid-row-start: auto;
-	border: 2px solid;
-	width: 12rem;
-	margin: 0 0 0 4rem;
-	background-color: rgb(81, 81, 149);
-	color: whitesmoke;
-}
 
-.fday3 {
+.forecast-results {
+	display: flex;
 	flex-direction: row;
-	position: relative;
-	display: grid;
-	left: 27rem;
-	grid-row-start: auto;
-	border: 2px solid;
-	width: 12rem;
-	margin: 0 0 0 4rem;
-	background-color: rgb(81, 81, 149);
-	color: whitesmoke;
-}
-
-.fday4 {
-	flex-direction: row;
-	position: relative;
-	display: grid;
-	left: 42rem;
-	grid-row-start: auto;
-	border: 2px solid;
-	width: 12rem;
-	margin: 0 0 0 4rem;
-	background-color: rgb(81, 81, 149);
-	color: whitesmoke;
-}
-
-.fday5 {
-	flex-direction: row;
-	position: relative;
-	display: grid;
-	left: 57rem;
+	width: 70rem;
 	height: auto;
-	grid-row-start: auto;
-	border: 2px solid;
-	width: 12rem;
-	margin: 0 0 0 4rem;
-	background-color: rgb(81, 81, 149);
-	color: whitesmoke;
+	
 }
+
+ 
 
 /* HEIGHT / WIDTH UTILS */
 .min-100-vh {
