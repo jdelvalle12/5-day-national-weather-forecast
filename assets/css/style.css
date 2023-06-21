@@ -162,6 +162,7 @@ main {
 	width: 21rem;
 	border: 3px solid ;
 	border-radius: 5px;
+	padding: 1rem;
 	background: linear-gradient(to bottom, #4e50eb, #3d84e0);
 }
 
@@ -195,7 +196,7 @@ main {
 }
 
 .user-input {
-	width: 20rem;
+	width: 18rem;
 	padding: 3%;
 	margin: 5px 0;
 	font-size: 1.2rem;
