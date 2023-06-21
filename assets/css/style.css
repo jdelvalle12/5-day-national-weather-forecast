@@ -21,6 +21,7 @@ body {
 	font-size: 16px;
 }
 
+
 #header {
 	position: relative;
 	background-color: blue;
@@ -295,6 +296,7 @@ li button {
 	position: relative;
 	display: grid;
 	left: 57rem;
+	height: auto;
 	grid-row-start: auto;
 	border: 2px solid;
 	width: 12rem;
