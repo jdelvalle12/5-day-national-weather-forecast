@@ -21,6 +21,13 @@ body {
 	font-size: 16px;
 }
 
+.background-image body {
+	position: relative;
+	background-image: url("./assets/images/the sky.jpg");
+	background-repeat: no-repeat;
+	background-size: cover;
+  }
+
 
 #header {
 	position: relative;
@@ -155,6 +162,7 @@ main {
 	width: 21rem;
 	border: 3px solid ;
 	border-radius: 5px;
+	background: linear-gradient(to bottom, #4e50eb, #3d84e0);
 }
 
 .card-header {
@@ -213,7 +221,7 @@ li button {
 	width: 58rem;
 	height: 20rem;
 	display: flex;
-	background-color: aqua;
+	background: linear-gradient(to bottom, rgb(107, 238, 238), rgb(18, 93, 122));
 }
 
 
